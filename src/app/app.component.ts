@@ -10,6 +10,7 @@ import {ApiService} from './services/api/api.service';
 export class AppComponent implements OnInit {
   title = 'vf';
   public debug = true;
+  public connected = false;
 
   constructor(public store: StoreService, public api: ApiService) {
 
@@ -22,6 +23,8 @@ export class AppComponent implements OnInit {
       }
     });
 
-    this.api.test.connection.get();
+    this.api.test.connection.get().subscribe((connected) => {
+      this.connected = true;
+    });
   }
 }
