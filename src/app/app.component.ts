@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {StoreService} from './store/store.service';
+import {ApiService} from './services/api/api.service';
 
 @Component({
   selector: 'vf-root',
@@ -10,7 +11,7 @@ export class AppComponent implements OnInit {
   title = 'vf';
   public debug = true;
 
-  constructor(public store: StoreService) {
+  constructor(public store: StoreService, public api: ApiService) {
 
   }
   ngOnInit() {
@@ -19,9 +20,8 @@ export class AppComponent implements OnInit {
         console.log('state', '--------------------------' );
         console.log(JSON.stringify(state));
       }
-    })
-    this.store.store.select('test').subscribe( (test) => {
-      console.log(test);
     });
+
+    this.api.test.connection.get();
   }
 }
