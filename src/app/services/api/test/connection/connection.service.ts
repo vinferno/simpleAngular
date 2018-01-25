@@ -6,7 +6,8 @@ export class ConnectionService extends ApiEndpoint {
   public config = {
     route: '/',
     headers: {
-      get: 'getTokenHeaders',
+      get: 'basic',
+      post: 'basic',
     },
   };
 }
