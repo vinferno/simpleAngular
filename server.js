@@ -16,17 +16,28 @@ app.use(bodyParser.json());
 
 
 let root = [];
+let storeFiles = [];
 let rootPath = './';
 let storePath = './src/app/store/slices';
 // define routes
 app.get('/', (req, res) => {
   res.json('you got it dude!');
-  root = fs.readdirSync(storePath);
+  storeFiles = fs.readdirSync(storePath);
   console.log('root', root);
 });
 
 app.post('/', (req, res) => {
-  req.body.root = root;
+  req.body.storeFiles = storeFiles;
+  if (!storeFiles.length) {
+    storeFiles = fs.readdirSync(storePath);
+  }
+
+  req.body.databases = {};
+
+  storeFiles.forEach( slice => {
+    req.body.databases[slice] = fs.readdirSync(storePath + '/' + slice);
+  })
+
   console.log('body', req.body);
   res.json(req.body);
 });
@@ -34,3 +45,9 @@ app.post('/', (req, res) => {
 
 
 app.listen(3000, () => console.log('Example app listening on port 3000!'));
+
+
+function readDir(req) {
+
+
+}

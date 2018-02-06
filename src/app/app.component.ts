@@ -13,6 +13,7 @@ export class AppComponent implements OnInit {
   title = 'vf';
   public debug = true;
   public connected = false;
+  public test;
 
   constructor(public store: StoreService, public api: ApiService) {
 
@@ -28,6 +29,9 @@ export class AppComponent implements OnInit {
     this.api.test.connection.get().subscribe((connected) => {
       this.connected = true;
     });
+    this.store.select('testState').subscribe( test => {
+      this.test = test;
+    })
 
 
 
@@ -42,10 +46,13 @@ export class AppComponent implements OnInit {
   testConnection() {
     this.api.test.connection.post(
       {test: 'is working'}
-    ).subscribe((connected: {test: string}) => {
+    ).subscribe((connected) => {
       this.connected = true;
       console.log('post response', connected);
-      this.store.dispatch(stateActions.test.updateTest({test: connected.test}));
+      console.log('state actions', stateActions)
+      if (connected) {
+        this.store.dispatch(stateActions.test.updateTest({test: connected.test}));
+      }
     }, () => {
       this.connected = false;
     });

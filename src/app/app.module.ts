@@ -12,12 +12,14 @@ import {reducers} from './store/main';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {ApiService, MainApiServices} from './services/api/api.service';
 import {HttpClientModule} from '@angular/common/http';
+import { ObjectPropsPipe } from './pipes/object-props/object-props.pipe';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    ObjectPropsPipe
   ],
   imports: [
     StoreModule.forRoot(reducers),
@@ -28,7 +30,7 @@ import {HttpClientModule} from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
   ],
-  providers: [ PageTitleService, StoreService, ApiService, MainApiServices ],
+  providers: [ PageTitleService, StoreService, ApiService, MainApiServices, ObjectPropsPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

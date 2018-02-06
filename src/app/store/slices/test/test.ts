@@ -1,12 +1,8 @@
-export interface Test {
-  test: string;
-}
-
-const defaultState: Test = {
-  test: 'wow',
-};
+import {defaultState} from './index';
 
 export const TEST_UPDATE_TITLE = '[test] update test';
+
+console.log('default state', defaultState);
 
 const types = {
   TEST_UPDATE_TITLE,
@@ -18,7 +14,7 @@ export const testActions = {
   types,
 };
 
-export function TestReducer(state: Test = defaultState, action: any) {
+export function TestReducer(state = defaultState, action: any) {
   switch (action.type) {
     case TEST_UPDATE_TITLE:
       return { ...state, ...{ test: action.payload.test }, ...{ type: action.type } };
