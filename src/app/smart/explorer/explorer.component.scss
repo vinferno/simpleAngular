@@ -1,0 +1,91 @@
+.folder {
+  background-color: yellow;
+  border: 2px solid black;
+  margin: 10px;
+  width: 100px;
+  display: inline-block;
+  height: 100px;
+  overflow: hidden;
+}
+
+.backFolder {
+  background-color: black;
+  border: 2px solid black;
+  margin: 10px;
+  width: 100px;
+  display: inline-block;
+  height: 100px;
+  overflow: hidden;
+  color: white;
+}
+
+
+.file {
+  background-color: burlywood;
+  border: 2px solid black;
+  margin: 10px;
+  width: 100px;
+  display: inline-block;
+  height: 100px;
+  overflow: hidden;
+}
+
+.text-area {
+  width: 100%;
+  height: auto;
+}
+
+
+
+// displays
+.flex {
+  display: flex;
+}
+
+.block {
+  display: block;
+}
+
+.inline {
+  display: inline;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+
+
+// flex spacings
+.space-around {
+  justify-content: space-around;
+}
+
+.space-evenly {
+  justify-content: space-evenly;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+
+
+// flex sizes
+.flex-1 {
+  flex: 1;
+}
+
+.flex-2 {
+  flex: 2;
+}
+
+.flex-3 {
+  flex: 3;
+}
+
+.flex-4 {
+  flex: 4;
+}
+
+

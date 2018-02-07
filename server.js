@@ -6,14 +6,10 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const fs = require('fs');
 
-
 // setup
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-
-
-
 
 let root = [];
 let storeFiles = [];
@@ -36,12 +32,39 @@ app.post('/', (req, res) => {
 
   storeFiles.forEach( slice => {
     req.body.databases[slice] = fs.readdirSync(storePath + '/' + slice);
-  })
-
-  console.log('body', req.body);
+  });
   res.json(req.body);
 });
 
+
+app.post('/read-dir', (req, res) => {
+  console.log(req.body, req.body);
+  if (req.body.hasOwnProperty('path')) {
+    console.log('path', req.body.path);
+    const keys = fs.readdirSync( rootPath + req.body.path);
+    const results = keys.map( key => {
+      const data = {};
+      data.key = key;
+      data.isDir = fs.lstatSync( rootPath +  req.body.path + '/' + key).isDirectory();
+      return data;
+    });
+    res.json(results);
+  }
+  else {
+    res.json({error: 'wrong path'});
+  }
+});
+
+app.post('/read-file', (req, res) => {
+  console.log(req.body, req.body);
+  if (req.body.hasOwnProperty('path')) {
+    const result = fs.readFileSync(rootPath + req.body.path, 'utf8');
+    res.json(result);
+  }
+  else {
+    res.json({error: 'wrong path'});
+  }
+});
 
 
 app.listen(3000, () => console.log('Example app listening on port 3000!'));

@@ -13,13 +13,18 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {ApiService, MainApiServices} from './services/api/api.service';
 import {HttpClientModule} from '@angular/common/http';
 import { ObjectPropsPipe } from './pipes/object-props/object-props.pipe';
+import { NavComponent } from './smart/nav/nav.component';
+import { ExplorerComponent } from './smart/explorer/explorer.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     WelcomeComponent,
-    ObjectPropsPipe
+    ObjectPropsPipe,
+    NavComponent,
+    ExplorerComponent
   ],
   imports: [
     StoreModule.forRoot(reducers),
@@ -27,6 +32,8 @@ import { ObjectPropsPipe } from './pipes/object-props/object-props.pipe';
       maxAge: 5 //  Retains last 5 states
     }),
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
   ],

@@ -1,0 +1,51 @@
+<section class="flex space-evenly">
+
+  <article >
+    <div>
+      <label class="block">bread crumb</label>
+      {{ breadCrumb }}
+    </div>
+    <div>
+      <label class="block">file path</label>
+      {{ filePath }}
+    </div>
+  </article>
+  <article>
+    <textarea [(ngModel)]="object" name="" id="" cols="30" rows="10"></textarea>
+
+  </article>
+
+
+
+</section>
+
+
+
+
+<div class="backFolder" (click)="back()" *ngIf="breadCrumb.length > 1">
+  <--
+</div>
+
+<div class="nav">
+  <ng-container *ngFor="let dir of dirs">
+    <ng-container *ngIf="dir.isDir">
+      <div (click)="clickFolder(dir.key)" class="folder">{{ dir.key }}</div>
+    </ng-container>
+
+  </ng-container>
+  <ng-container *ngFor="let dir of dirs">
+    <ng-container *ngIf="!dir.isDir">
+      <div (click)="readFile(dir.key)" class="file">{{ dir.key }}</div>
+    </ng-container>
+
+  </ng-container>
+
+  <textarea  id="textarea" class="text-area" [(ngModel)]="fileText" name="" id="" cols="30" rows="10"></textarea>
+
+  <pre>
+
+  {{ fileText }}
+  </pre>
+
+  ß
+</div>

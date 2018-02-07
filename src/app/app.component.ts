@@ -46,10 +46,8 @@ export class AppComponent implements OnInit {
   testConnection() {
     this.api.test.connection.post(
       {test: 'is working'}
-    ).subscribe((connected) => {
+    ).subscribe((connected: any) => {
       this.connected = true;
-      console.log('post response', connected);
-      console.log('state actions', stateActions)
       if (connected) {
         this.store.dispatch(stateActions.test.updateTest({test: connected.test}));
       }

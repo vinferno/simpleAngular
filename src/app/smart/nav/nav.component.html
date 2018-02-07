@@ -1,0 +1,11 @@
+<div class="nav">
+  <ng-container *ngFor="let route of routes">
+    <ng-container *ngIf="route.data">
+      <a [routerLink]="[route.path]" class="link" >
+        {{ route.path }}
+      </a>
+    </ng-container>
+
+  </ng-container>
+    <div class="filler"></div>
+</div>
