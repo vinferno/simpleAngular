@@ -15,9 +15,18 @@
       <label class="block label">current File</label>
       {{ currentFile }}
     </div>
+    <div>
+      <button (click)="goToSlices()">Slices</button>
+    </div>
   </article>
   <article>
-    <textarea [(ngModel)]="object" name="" id="" cols="30" rows="10"></textarea>
+    <div>
+      <textarea [(ngModel)]="object" name="" id="" cols="30" rows="10"></textarea>
+    </div>
+    <div>
+      Object keys : {{ objectKeys | json }}
+    </div>
+
     <div>
       <button (click)="createActionFile()">
         create action file

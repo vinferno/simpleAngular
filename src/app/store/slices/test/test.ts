@@ -1,4 +1,4 @@
-import {defaultState} from './index';
+import * as defaultState from './index.json';
 
 export const TEST_UPDATE_TITLE = '[test] update test';
 

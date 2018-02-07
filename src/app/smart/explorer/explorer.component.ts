@@ -15,6 +15,7 @@ export class ExplorerComponent implements OnInit {
   public fileTextCreated = '';
 
   public object = JSON.stringify({});
+  public objectKeys = [];
 
   constructor(public api: ApiService) { }
 
@@ -55,22 +56,34 @@ export class ExplorerComponent implements OnInit {
     } else {
       this.filePath = this.breadCrumb  + path;
     }
-    this.api.explorer.readFile.post({path: this.filePath }).subscribe( res => {
+    this.api.explorer.readFile.post({path: this.filePath }).subscribe( (res: any) => {
       console.log('res', res);
       this.fileText = res;
 
       const testString = 'export const defaultState = ';
-      if (res.includes(testString)) {
-        console.log('includess');
-        this.object = res.substring(testString.length, res.length);
-      } else {
-        console.log('does not')
+      let testJson;
+
+      try {
+        testJson = JSON.parse(this.fileText);
+      } catch (e) {
+        console.log('not json');
       }
+
+      if (testJson) {
+        this.object = JSON.stringify(testJson);
+      }
+
     });
   }
 
   createActionFile() {
+    this.objectKeys = Object.keys(JSON.parse(this.object));
     this.fileTextCreated = 'import {defaultState} from \'./index\';';
+  }
+
+  goToSlices() {
+    this.breadCrumb = '/src/app/store/slices';
+    this.readDir(this.breadCrumb);
   }
 
 }
