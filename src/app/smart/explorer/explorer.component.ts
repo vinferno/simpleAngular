@@ -11,6 +11,8 @@ export class ExplorerComponent implements OnInit {
   public filePath = '';
   public dirs = [];
   public fileText;
+  public currentFile = '';
+  public fileTextCreated = '';
 
   public object = JSON.stringify({});
 
@@ -22,7 +24,7 @@ export class ExplorerComponent implements OnInit {
 
   readDir(path) {
     console.log('path', path)
-    this.api.explorer.readDir.post({path }).subscribe( res => {
+    this.api.explorer.readDir.post({path }).subscribe( (res: any) => {
       console.log('res', res);
       this.dirs = res;
     });
@@ -45,6 +47,9 @@ export class ExplorerComponent implements OnInit {
   }
 
   readFile(path) {
+
+    const breadcrumbArray = this.breadCrumb.split('/');
+    this.currentFile = breadcrumbArray.pop();
     if (this.breadCrumb.length > 1) {
       this.filePath = this.breadCrumb + '/' + path;
     } else {
@@ -62,6 +67,10 @@ export class ExplorerComponent implements OnInit {
         console.log('does not')
       }
     });
+  }
+
+  createActionFile() {
+    this.fileTextCreated = 'import {defaultState} from \'./index\';';
   }
 
 }

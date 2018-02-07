@@ -1,17 +1,28 @@
+
+
 <section class="flex space-evenly">
 
   <article >
     <div>
-      <label class="block">bread crumb</label>
+      <label class="block label">bread crumb</label>
       {{ breadCrumb }}
     </div>
     <div>
-      <label class="block">file path</label>
+      <label class="block label">file path</label>
       {{ filePath }}
+    </div>
+    <div>
+      <label class="block label">current File</label>
+      {{ currentFile }}
     </div>
   </article>
   <article>
     <textarea [(ngModel)]="object" name="" id="" cols="30" rows="10"></textarea>
+    <div>
+      <button (click)="createActionFile()">
+        create action file
+      </button>
+    </div>
 
   </article>
 
@@ -19,33 +30,31 @@
 
 </section>
 
+<section class="flex space-evenly">
 
 
+  <article class="flex-1">
+    <div class="backFolder" (click)="back()" *ngIf="breadCrumb.length > 1">
+      <--
+    </div>
+    <ng-container *ngFor="let dir of dirs">
+      <ng-container *ngIf="dir.isDir">
+        <div (click)="clickFolder(dir.key)" class="folder">{{ dir.key }}</div>
+      </ng-container>
 
-<div class="backFolder" (click)="back()" *ngIf="breadCrumb.length > 1">
-  <--
-</div>
-
-<div class="nav">
-  <ng-container *ngFor="let dir of dirs">
-    <ng-container *ngIf="dir.isDir">
-      <div (click)="clickFolder(dir.key)" class="folder">{{ dir.key }}</div>
     </ng-container>
+    <ng-container *ngFor="let dir of dirs">
+      <ng-container *ngIf="!dir.isDir">
+        <div (click)="readFile(dir.key)" class="file">{{ dir.key }}</div>
+      </ng-container>
 
-  </ng-container>
-  <ng-container *ngFor="let dir of dirs">
-    <ng-container *ngIf="!dir.isDir">
-      <div (click)="readFile(dir.key)" class="file">{{ dir.key }}</div>
     </ng-container>
+  </article>
+  <article class="flex-1">
+    <textarea  id="textarea" class="text-area" [(ngModel)]="fileText" cols="30" rows="10"></textarea>
+    <textarea  id="textarea-main" class="text-area" [(ngModel)]="fileTextCreated" cols="30" rows="10"></textarea>
+  </article>
 
-  </ng-container>
+</section>
 
-  <textarea  id="textarea" class="text-area" [(ngModel)]="fileText" name="" id="" cols="30" rows="10"></textarea>
 
-  <pre>
-
-  {{ fileText }}
-  </pre>
-
-  ß
-</div>
