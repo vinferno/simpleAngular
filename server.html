@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+hello
+
+<div id="root"></div>
+
+<script>
+
+
+
+  const root = document.getElementById('root');
+
+
+
+  function httpGet(theUrl)
+  {
+    const xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+    xmlHttp.send( null );
+    return xmlHttp.responseText;
+  }
+
+  root.innerHTML = httpGet('https://jsonplaceholder.typicode.com/posts');
+</script>
+</body>
+</html>

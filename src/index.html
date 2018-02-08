@@ -17,4 +17,24 @@
 <body>
   <vf-root></vf-root>
 </body>
+
+
+<div id="console">
+
+</div>
+
+
+<script>
+
+  window.addEventListener("gamepadconnected", function(e) {
+    document.getElementById('console').innerText = 'e.gamepad.index: ' + e.gamepad.index +', e.gamepad.id: ' +
+      e.gamepad.id + ', e.gamepad.buttons.length: ' +
+      e.gamepad.buttons.length + ', e.gamepad.axes.length ' + e.gamepad.axes.length;
+
+    console.log("Gamepad connected at index %d: %s. %d buttons, %d axes.",
+      e.gamepad.index, e.gamepad.id,
+      e.gamepad.buttons.length, e.gamepad.axes.length);
+  });
+
+</script>
 </html>
