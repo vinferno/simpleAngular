@@ -77,8 +77,13 @@ export class ExplorerComponent implements OnInit {
   }
 
   createActionFile() {
+    if (!this.currentFile) { return; }
     this.objectKeys = Object.keys(JSON.parse(this.object));
-    this.fileTextCreated = 'import {defaultState} from \'./index\';';
+    this.fileTextCreated = 'import {defaultState} from \'./index.json\';\n';
+    this.objectKeys.forEach( key => {
+      this.fileTextCreated += '\nexport const ' + this.currentFile.toUpperCase() + '_UPDATE_' + key.toUpperCase();
+      this.fileTextCreated += ' = \'[' + this.currentFile.toLowerCase() + ']' + ' update ' + key.toLowerCase() + '\';';
+    });
   }
 
   goToSlices() {
