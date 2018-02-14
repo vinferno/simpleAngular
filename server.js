@@ -74,6 +74,22 @@ app.post('/read-file', (req, res) => {
   }
 });
 
+app.post('/write-file', (req, res) => {
+  console.log('body', req.body);
+  if (!req.body.object) { return; }
+  const check = fs.existsSync(rootPath  + 'src/app/store/slices/' + req.body.newDataName);
+
+  if(!check) {
+    fs.mkdirSync(rootPath + 'src/app/store/slices/' + req.body.newDataName)
+  }
+  const success = fs.writeFileSync(rootPath  + 'src/app/store/slices/' +
+    req.body.newDataName + '/index.json', req.body.object, 'utf8');
+  const action = fs.writeFileSync(rootPath  + 'src/app/store/slices/' +
+    req.body.newDataName + '/' + req.body.newDataName +'.ts', req.body.actionFileCreated, 'utf8');
+  const main = fs.writeFileSync(rootPath  + 'src/app/store/main.ts', req.body.mainFileCreated, 'utf8');
+  res.json({ success, action, main });
+});
+
 
 app.listen(3000, () => console.log('Example app listening on port 3000!'));
 

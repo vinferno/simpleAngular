@@ -1,5 +1,6 @@
 
-
+{{ validJson() }}
+{{sliceNames | json}}
 <section class="flex space-evenly">
 
   <article >
@@ -21,14 +22,20 @@
   </article>
   <article>
     <div>
-      <textarea [(ngModel)]="object" name="" id="" cols="30" rows="10"></textarea>
+      <h3 *ngIf="isNewSlice()">New File</h3>
+      <h3 class="disabled" *ngIf="isOldSlice()">Old File</h3>
+      <input type="text" [(ngModel)]="newDataName">
+
     </div>
     <div>
       Object keys : {{ objectKeys | json }}
     </div>
 
     <div>
-      <button (click)="createActionFile()">
+      <button class="enabled" *ngIf="validJson()" (click)="createActionFile()">
+        create action file
+      </button>
+      <button class="disabled" disabled *ngIf="!validJson()" >
         create action file
       </button>
     </div>
@@ -38,6 +45,8 @@
 
 
 </section>
+
+<button (click)="createFiles()">sliceText</button>
 
 <section class="flex space-evenly">
 
@@ -60,10 +69,17 @@
     </ng-container>
   </article>
   <article class="flex-1">
+    <h3>object</h3>
+    <textarea [(ngModel)]="object" name="" id="" class="text-area" cols="30" rows="10"></textarea>
+    <h3>current file text: {{ currentFile }}</h3>
     <textarea  id="textarea" class="text-area" [(ngModel)]="fileText" cols="30" rows="10"></textarea>
-    <textarea  id="textarea-main" class="text-area" [(ngModel)]="fileTextCreated" cols="30" rows="10"></textarea>
+    <h3>actionFileCreated</h3>
+    <textarea  id="textarea-action" class="text-area" [(ngModel)]="actionFileCreated" cols="30" rows="10"></textarea>
+    <h3>mainFileCreated</h3>
+    <textarea  id="textarea-main" class="text-area" [(ngModel)]="mainFileCreated" cols="30" rows="10"></textarea>
   </article>
 
 </section>
-
-
+<section>
+  {{sliceText | json}}
+</section>

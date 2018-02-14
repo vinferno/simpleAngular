@@ -1,9 +1,14 @@
-import {testActions, TestReducer} from './slices/test/test';
+import { testReducer, testActions } from './slices/test/test';
+import { loveReducer, loveActions } from './slices/love/love';
 
 export const reducers = {
-  test: TestReducer,
+	test: testReducer,
+	love: loveReducer,
+
 };
 
 export const stateActions = {
-  test: testActions,
+	test: testActions,
+	love: loveActions,
+
 };

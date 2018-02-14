@@ -14,7 +14,7 @@ export const testActions = {
   types,
 };
 
-export function TestReducer(state: any = defaultState, action: any) {
+export function testReducer(state: any = defaultState, action: any) {
   switch (action.type) {
     case TEST_UPDATE_TITLE:
       return { ...state, ...{ test: action.payload.test }, ...{ type: action.type } };
