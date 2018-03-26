@@ -52,6 +52,7 @@ export class AppComponent implements OnInit {
         this.store.dispatch(stateActions.test.updateTest({test: connected.test}));
       }
     }, () => {
+      console.log('error');
       this.connected = false;
     });
   }
