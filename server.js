@@ -5,27 +5,27 @@ const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const fs = require('fs');
+const path = require('path');
 
 // setup
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use(express.static('dist'));
-
+app.use(express.static(path.join(__dirname, 'dist')));
 let root = [];
 let storeFiles = [];
 let rootPath = './';
 let storePath = './src/app/store/slices';
 
-
+const dist = './dist/';
 
 
 
 // define routes
 app.get('/', (req, res) => {
   console.log('someone accessed this');
-  res.sendfile('./server.html');
+  res.sendFile(dist + 'index.html');
   storeFiles = fs.readdirSync(storePath);
   console.log('root', root);
 });

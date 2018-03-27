@@ -6,5 +6,5 @@
 export const environment = {
   production      : false,
   environmentName : 'dev',
-  host            : 'http://10.0.0.9:3000',
+  host            : 'http://localhost:3000',
 };
